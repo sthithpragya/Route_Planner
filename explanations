@@ -1,0 +1,69 @@
+Question 1:
+
+The function breaks and sequentially compares contiguous substrings of s character-wise with characters of t. 
+	
+	1) The function checks for a case of invalid inputs. 
+
+	2) Any substring whose characters match completely with all characters of t is a valid anagram of t and function subsequently returns True. If all substrings have been compared and none match with t, function returns False.
+
+Time complexity:
+s 					- size of input s
+t 					- size of input t (size of substring of s)
+Worst case scenario - Every substring of s has to be compared to t (though I am not sure if such a case exists or not)
+
+Steps required 	= (s-t+1)*(t^2+1)/2
+Time complexity = O((s-t)*t^2)
+	
+Space efficieny:
+Since for every contiguous substring of s, we are creating a substring (from s) of length t and a copy of t in T (to take care of repetitions), the space complexity seems = O((s-t+1)*2t) ~ O((s-t)*t)
+
+#----------------------End of question 1-----------------------------------------------------
+
+Question 2:
+
+The function forms contiguous substrings of a (of lengths of decreasing order in multiple passes) and checks if a substring forms a palindrome (by comparing it to its reverse). Since the checking is done on strings with their lengths decreasing, the first substring to form a palindrome will be the longest one. This substring is returned.
+
+Time complexity:
+a 					- size of the input string
+worst case scenario - When all substrings down to the single character ones have to be checked. Though when it comes to single character string comparison, the first string itself will suffice for the result and hence only one instead of 'a' iterations will ne needed. Thus this case has been eliminated from consideration.
+
+Steps required = summation(a-j+1) where j belongs to [2,a] = a(a-1)/2
+Time complexity seems O(a^2)
+
+Space complexity:
+Since for every contiguous substring of a of some length between 1 and a, we are creating 2 substrings reverse and test_string, the space complexity seems = sum_over_i(sum_over_j(2*i)) where j is[1,a-i+1] and i is [2,a] (eliminating the case of single char substring)
+
+Space complexity seems O((a^3 + 3a^2 - 4a)/3) ~ O(a^3)
+
+#----------------------End of question 2-----------------------------------------------------
+
+Question 3:
+
+The function uses Kruskal's algorith. The fucntion first makes a list of the edges (without any repetition) which is then sorted as per edge length.
+
+The shortest edge is picked every iteration and checked if it forms a cylce or not. If a cycle is formed, the next smallest edge is picked else the edge is added to the output subgraph. This goes on until the number of edges added is (number of vertices) - 1.
+
+Time complexity of algorith is O(ElogV)
+Space complexity is O(V) to account for the list 'connection' which stores the edges of MST.
+
+#----------------------End of question 3-----------------------------------------------------
+
+Question 4:
+
+The function prepares ancestry lists for each of the nodes (n1 and n2) from the root to the node by individually traversing through the parents (from the T matrix). Once lists are prepared, the last common element among the lists serves as the least common ancestor.
+
+Time complexity of algorithm - The number of steps required to make the ancestry list depends on the rank of the node. Thus the time complexity would be O(log(n)) where n is total number of nodes in tree and log is to the base 2.
+
+Space complexity - Since the length of ancestry lists vary with each step, the space complexity of the algorithm would also be O(log(n)).
+
+#----------------------End of question 4-----------------------------------------------------
+
+Question 5:
+
+The function first traverses through the linked list element-wise while also storing the data value of each node in a separate list. When the entire linked list has been traversed, the value of the mth node from the end is found from the newly prepared list using the (length of list - m)th index.
+
+Time complexity: Since the algorithm goes through all the elements of the linked list, complexity is O(n)
+
+Space complexity: Since we prepare a list of node values by appending the value to list at each iteration, the space complexity is also O(n)
+
+#----------------------End of question 5-----------------------------------------------------
